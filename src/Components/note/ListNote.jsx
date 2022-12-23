@@ -1,15 +1,19 @@
-import ItemNote from "./ItemNote";
+import ItemNote from './ItemNote';
 
-const ListNote = ({datas}) => {
-    return (<div>
-        <h1>List Note</h1>
-        <p>Total note : {datas.length}</p>
-        {datas.map((data) => {
-        if(data.archived) {return <ItemNote title = {data.title} body = {data.body} archived = {data.archived} createdAt = {data.createdAt} id = {data.id}/>}
-        else {return <h1>Nope</h1>}
-        })}
-    </div>)
-
-}
+const ListNote = ({ datas, title, archived = false }) => {
+  // const dataArchived = datas.filter((data) => data.archived);
+  return (
+    <section className="notes-arc">
+      <h1 className="title">{title}</h1>
+      <div className="card-wrapper">
+        {datas
+          .filter((data) => data.archived === archived)
+          .map((data, idx) => (
+            <ItemNote title={data.title} body={data.body} archived={data.archived} createdAt={data.createdAt} key={idx} />
+          ))}
+      </div>
+    </section>
+  );
+};
 
 export default ListNote;

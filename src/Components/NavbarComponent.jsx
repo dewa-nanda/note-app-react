@@ -4,11 +4,11 @@ const NavbarComponent = () => {
       <h1>KETnotes</h1>
 
       <div className="list-link">
-        <a href="#1">Notes</a>
-        <a href="#1">Archived Notes</a>
+        <a href="#Notes">Notes</a>
+        <a href="#Archived">Archived Notes</a>
       </div>
     </header>
   );
 };
 
-export default NavbarComponent
+export default NavbarComponent;

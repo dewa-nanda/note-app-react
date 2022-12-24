@@ -1,4 +1,4 @@
-const ItemNote = ({ title, body, archived, createdAt, id }) => {
+const ItemNote = ({ title, body, archived, createdAt, id, onDelete, onArchived }) => {
   return (
     <div className="card-item">
       <div className="card-header">
@@ -12,8 +12,18 @@ const ItemNote = ({ title, body, archived, createdAt, id }) => {
       <div className="card-footer">
         <p>{createdAt.split('T')[0]}</p>
         <div className="card-btn-wrapper">
-          {archived ? <button className="btn-arch">Unarchived</button> : <button className="btn-arch">Archived</button>}
-          <button className="btn-dlt">Delete</button>
+          {archived ? (
+            <button className="btn-arch" onClick={() => onArchived(id)}>
+              Unarchived
+            </button>
+          ) : (
+            <button className="btn-arch" onClick={() => onArchived(id)}>
+              Archived
+            </button>
+          )}
+          <button className="btn-dlt" onClick={() => onDelete(id)}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

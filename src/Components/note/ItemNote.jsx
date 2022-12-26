@@ -1,3 +1,5 @@
+import { showFormattedDate } from '../../utils/data';
+
 const ItemNote = ({ title, body, archived, createdAt, id, onDelete, onArchived }) => {
   return (
     <div className="card-item">
@@ -10,7 +12,7 @@ const ItemNote = ({ title, body, archived, createdAt, id, onDelete, onArchived }
       </div>
 
       <div className="card-footer">
-        <p>{createdAt.split('T')[0]}</p>
+        <p>{showFormattedDate(createdAt)}</p>
         <div className="card-btn-wrapper">
           {archived ? (
             <button className="btn-arch" onClick={() => onArchived(id)}>

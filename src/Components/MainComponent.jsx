@@ -1,5 +1,5 @@
 import ListNote from './note/ListNote';
-import data from '../utils/data';
+import { getInitialData } from '../utils/data';
 import React from 'react';
 import FooterComponent from './FooterComponent';
 import NavbarComponent from './NavbarComponent';
@@ -11,7 +11,7 @@ class MainComponent extends React.Component {
     super(props);
 
     this.state = {
-      notes: data,
+      notes: getInitialData(),
       inputTitle: '',
       inputContent: '',
       search: '',

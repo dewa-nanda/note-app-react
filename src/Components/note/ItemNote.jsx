@@ -1,4 +1,5 @@
 import { showFormattedDate } from '../../utils/data';
+import { BsBookmarkPlus, BsFillBookmarkFill } from 'react-icons/bs';
 
 const ItemNote = ({ title, body, archived, createdAt, id, onDelete, onArchived }) => {
   return (
@@ -16,16 +17,16 @@ const ItemNote = ({ title, body, archived, createdAt, id, onDelete, onArchived }
         <div className="card-btn-wrapper">
           {archived ? (
             <button className="btn-arch" onClick={() => onArchived(id)}>
-              Unarchived
+              <BsFillBookmarkFill></BsFillBookmarkFill>
             </button>
           ) : (
             <button className="btn-arch" onClick={() => onArchived(id)}>
-              Archived
+              <BsBookmarkPlus></BsBookmarkPlus>
             </button>
           )}
-          <button className="btn-dlt" onClick={() => onDelete(id)}>
+          {/* <button className="btn-dlt" onClick={() => onDelete(id)}>
             Delete
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

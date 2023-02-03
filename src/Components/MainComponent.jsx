@@ -4,7 +4,11 @@ import React from 'react';
 import FooterComponent from './FooterComponent';
 import NavbarComponent from './NavbarComponent';
 import SearchNote from './note/SearchNote';
-import InputNote from './note/InputNote';
+import { Route, Routes } from 'react-router-dom';
+
+import IndexPage from '../pages/Index';
+import ArchivedNotes from '../pages/ArchivedNotes';
+import AddNote from '../pages/AddNote';
 
 class MainComponent extends React.Component {
   constructor(props) {
@@ -12,84 +16,82 @@ class MainComponent extends React.Component {
 
     this.state = {
       notes: getInitialData(),
-      inputTitle: '',
-      inputContent: '',
-      search: '',
     };
 
-    this.onClickDelete = this.onClickDelete.bind(this);
-    this.onClickArchived = this.onClickArchived.bind(this);
-    this.onChangeSearch = this.onChangeSearch.bind(this);
-    this.onInputTitle = this.onInputTitle.bind(this);
-    this.onInputContent = this.onInputContent.bind(this);
-    this.onSubmitInput = this.onSubmitInput.bind(this);
-  }
+    //   this.onClickDelete = this.onClickDelete.bind(this);
+    //   this.onClickArchived = this.onClickArchived.bind(this);
+    //   this.onChangeSearch = this.onChangeSearch.bind(this);
+    //   this.onInputTitle = this.onInputTitle.bind(this);
+    //   this.onInputContent = this.onInputContent.bind(this);
+    //   this.onSubmitInput = this.onSubmitInput.bind(this);
+    // }
 
-  onInputTitle(event) {
-    if (event.target.value.length <= 50) {
-      this.setState(() => {
-        return { inputTitle: event.target.value };
-      });
-    }
-  }
+    // onInputTitle(event) {
+    //   if (event.target.value.length <= 50) {
+    //     this.setState(() => {
+    //       return { inputTitle: event.target.value };
+    //     });
+    //   }
+    // }
 
-  onInputContent(event) {
-    this.setState(() => {
-      return { inputContent: event.target.value };
-    });
-  }
+    // onInputContent(event) {
+    //   this.setState(() => {
+    //     return { inputContent: event.target.value };
+    //   });
+    // }
 
-  onSubmitInput(event) {
-    event.preventDefault();
-    if (this.state.inputContent === '' || this.state.inputTitle === '') {
-      alert('Please fill all input fields');
-    } else {
-      const inputData = {
-        id: +new Date(),
-        title: this.state.inputTitle,
-        body: this.state.inputContent,
-        archived: false,
-        createdAt: new Date().toISOString(),
-      };
+    // onSubmitInput(event) {
+    //   event.preventDefault();
+    //   if (this.state.inputContent === '' || this.state.inputTitle === '') {
+    //     alert('Please fill all input fields');
+    //   } else {
+    //     const inputData = {
+    //       id: +new Date(),
+    //       title: this.state.inputTitle,
+    //       body: this.state.inputContent,
+    //       archived: false,
+    //       createdAt: new Date().toISOString(),
+    //     };
 
-      this.setState((currentState) => {
-        const notesUpdate = currentState.notes;
-        notesUpdate.push(inputData);
+    //     this.setState((currentState) => {
+    //       const notesUpdate = currentState.notes;
+    //       notesUpdate.push(inputData);
 
-        return { notes: notesUpdate };
-      });
+    //       return { notes: notesUpdate };
+    //     });
 
-      alert('Anda berhasil menambahakn note');
-    }
+    //     alert('Anda berhasil menambahakn note');
+    //   }
 
-    this.setState(() => {
-      return { inputTitle: '', inputContent: '' };
-    });
-  }
+    //   this.setState(() => {
+    //     return { inputTitle: '', inputContent: '' };
+    //   });
+    // }
 
-  onClickDelete(id) {
-    const notes = this.state.notes.filter((note) => note.id !== id);
-    this.setState({ notes });
-  }
+    const onClickDelete = (id) => {
+      // const notes = this.state.notes.filter((note) => note.id !== id);
+      // this.setState({ notes });
+      console.log(id);
+    };
 
-  onClickArchived(id) {
-    const notes = this.state.notes.map((note) => {
-      if (note.id === id) {
-        return { ...note, archived: !note.archived };
-      } else {
-        return note;
-      }
-    });
+    // onClickArchived(id) {
+    //   const notes = this.state.notes.map((note) => {
+    //     if (note.id === id) {
+    //       return { ...note, archived: !note.archived };
+    //     } else {
+    //       return note;
+    //     }
+    //   });
 
-    this.setState({ notes });
-  }
+    //   this.setState({ notes });
+    // }
 
-  onChangeSearch(event) {
-    this.setState(() => {
-      return {
-        search: event.target.value,
-      };
-    });
+    // onChangeSearch(event) {
+    //   this.setState(() => {
+    //     return {
+    //       search: event.target.value,
+    //     };
+    //   });
   }
 
   render() {
@@ -97,10 +99,16 @@ class MainComponent extends React.Component {
       <>
         <NavbarComponent />
         <main>
-          <InputNote inputTitle={this.state.inputTitle} onSubmit={this.onSubmitInput} onInputTitle={this.onInputTitle} inputContent={this.state.inputContent} onInputContent={this.onInputContent} />
-          <SearchNote value={this.state.search} onChangeSearch={this.onChangeSearch} />
+          {/* <InputNote inputTitle={this.state.inputTitle} onSubmit={this.onSubmitInput} onInputTitle={this.onInputTitle} inputContent={this.state.inputContent} onInputContent={this.onInputContent} /> */}
+          {/* <SearchNote value={this.state.search} onChangeSearch={this.onChangeSearch} />
           <ListNote datas={this.state.notes} title={'Notes'} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} />
-          <ListNote datas={this.state.notes} title={'Archived'} archived={true} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} />
+          <ListNote datas={this.state.notes} title={'Archived'} archived={true} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} /> */}
+          <Routes>
+            <Route path="/" element={<IndexPage notes={this.state.notes} />} />
+
+            <Route path="archived" element={<ArchivedNotes notes={this.state.notes} />} onDelete={this.onClickDelete} />
+            <Route path="addNote" element={<AddNote />} />
+          </Routes>
         </main>
         <FooterComponent />
       </>

@@ -115,17 +115,13 @@ main {
 
 .btn-arch {
   cursor: pointer;
-  background-color: #ceedc7;
-  padding: 2px;
-  border-radius: 8px;
-  transition: background-color 0.1s linear;
+  background-color:#febe8c ;
+  border: none;
+  font-size: 25px;
 }
 
 .btn-arch:hover {
   cursor: pointer;
-  background-color: #b6d8af;
-  padding: 2px;
-  border-radius: 8px;
 }
 
 .btn-dlt {
@@ -159,8 +155,7 @@ main {
 
 /* search */
 .search-bar {
-  margin: 0 auto;
-  width: 75%;
+  width: 50%;
 }
 
 .search-bar input {
@@ -267,4 +262,9 @@ footer {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.wrapperPage {
+  display: flex;
+  justify-content: space-around;
 }

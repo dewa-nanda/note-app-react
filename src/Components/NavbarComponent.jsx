@@ -1,11 +1,14 @@
+import { Link } from 'react-router-dom';
+
 const NavbarComponent = () => {
   return (
     <header>
       <h1>KETnotes</h1>
 
       <div className="list-link">
-        <a href="#Notes">Notes</a>
-        <a href="#Archived">Archived Notes</a>
+        <Link to="/">Home</Link>
+        <Link to="/archived">Archived note</Link>
+        <Link to="/addNote">Add Note</Link>
       </div>
     </header>
   );

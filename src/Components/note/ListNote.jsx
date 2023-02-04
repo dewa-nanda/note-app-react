@@ -7,7 +7,6 @@ const ListNote = ({ datas, title, archived = false, onDelete, onArchived, search
 
   return (
     <section className="notes-arc" id={title}>
-      <h1 className="title">{title}</h1>
       {datasFilterd.length !== 0 && searchValue.length !== 0 ? (
         <div className="card-wrapper">
           {searchFilter === ''

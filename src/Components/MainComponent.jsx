@@ -5,6 +5,10 @@ import FooterComponent from './FooterComponent';
 import NavbarComponent from './NavbarComponent';
 import SearchNote from './note/SearchNote';
 import InputNote from './note/InputNote';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+import IndexPage from '../routes/IndexPage';
+import AddNotePage from '../routes/AddNotePage';
 
 class MainComponent extends React.Component {
   constructor(props) {
@@ -55,11 +59,10 @@ class MainComponent extends React.Component {
       this.setState((currentState) => {
         const notesUpdate = currentState.notes;
         notesUpdate.push(inputData);
-
         return { notes: notesUpdate };
       });
 
-      alert('Anda berhasil menambahakn note');
+      // alert('Anda berhasil menambahakn note');
     }
 
     this.setState(() => {
@@ -97,10 +100,14 @@ class MainComponent extends React.Component {
       <>
         <NavbarComponent />
         <main>
-          <InputNote inputTitle={this.state.inputTitle} onSubmit={this.onSubmitInput} onInputTitle={this.onInputTitle} inputContent={this.state.inputContent} onInputContent={this.onInputContent} />
+          {/* <InputNote inputTitle={this.state.inputTitle} onSubmit={this.onSubmitInput} onInputTitle={this.onInputTitle} inputContent={this.state.inputContent} onInputContent={this.onInputContent} />
           <SearchNote value={this.state.search} onChangeSearch={this.onChangeSearch} />
           <ListNote datas={this.state.notes} title={'Notes'} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} />
-          <ListNote datas={this.state.notes} title={'Archived'} archived={true} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} />
+          <ListNote datas={this.state.notes} title={'Archived'} archived={true} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} /> */}
+          <Routes>
+            <Route path="/" element={<IndexPage notes={this.state.notes} onDelete={this.onClickDelete} onArchived={this.onClickArchived} searchFilter={this.state.search} onChangeSearch={this.onChangeSearch} />} />
+            <Route path="/addNote" element={<AddNotePage inputTitle={this.state.inputTitle} onSubmit={this.onSubmitInput} onInputTitle={this.onInputTitle} inputContent={this.state.inputContent} onInputContent={this.onInputContent} />} />
+          </Routes>
         </main>
         <FooterComponent />
       </>

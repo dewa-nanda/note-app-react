@@ -1,14 +1,27 @@
-import ListNote from './note/ListNote';
 import { getInitialData } from '../utils/data';
 import React from 'react';
 import FooterComponent from './FooterComponent';
 import NavbarComponent from './NavbarComponent';
-import SearchNote from './note/SearchNote';
-import InputNote from './note/InputNote';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, useSearchParams } from 'react-router-dom';
 
 import IndexPage from '../routes/IndexPage';
 import AddNotePage from '../routes/AddNotePage';
+
+function MainWrapper() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword');
+
+  const changeSearchParams = (keyword) => {
+    setSearchParams({ keyword });
+  };
+
+  const deleteParams = () => {
+    searchParams.delete('keyword');
+    setSearchParams(searchParams);
+  };
+
+  return <MainComponent defaultKeyword={keyword} keywordChange={changeSearchParams} deleteParams={deleteParams} />;
+}
 
 class MainComponent extends React.Component {
   constructor(props) {
@@ -19,6 +32,7 @@ class MainComponent extends React.Component {
       inputTitle: '',
       inputContent: '',
       search: '',
+      succsesUpdate: false,
     };
 
     this.onClickDelete = this.onClickDelete.bind(this);
@@ -59,10 +73,10 @@ class MainComponent extends React.Component {
       this.setState((currentState) => {
         const notesUpdate = currentState.notes;
         notesUpdate.push(inputData);
-        return { notes: notesUpdate };
+        return { notes: notesUpdate, succsesUpdate: true };
       });
 
-      // alert('Anda berhasil menambahakn note');
+      alert('Anda berhasil menambahakn note');
     }
 
     this.setState(() => {
@@ -93,6 +107,12 @@ class MainComponent extends React.Component {
         search: event.target.value,
       };
     });
+
+    if (event.target.value === '') {
+      this.props.deleteParams();
+    } else {
+      this.props.keywordChange(event.target.value);
+    }
   }
 
   render() {
@@ -115,4 +135,4 @@ class MainComponent extends React.Component {
   }
 }
 
-export default MainComponent;
+export default MainWrapper;

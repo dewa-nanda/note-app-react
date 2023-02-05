@@ -1,4 +1,4 @@
-const InputNote = ({ inputTitle, onInputTitle, inputContent, onInputContent, onSubmit }) => {
+const InputNote = ({ inputTitle, onInputTitle, inputContent, onInputContent, onSubmit}) => {
   return (
     <div className="input-note">
       <div className="input-header">
@@ -8,6 +8,7 @@ const InputNote = ({ inputTitle, onInputTitle, inputContent, onInputContent, onS
       <form>
         <input placeholder="Insert Note Title..." value={inputTitle} onChange={onInputTitle}></input>
         <textarea placeholder="Insert Note Content..." value={inputContent} onChange={onInputContent}></textarea>
+
         <button onClick={onSubmit}>Submit</button>
       </form>
     </div>

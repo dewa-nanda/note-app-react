@@ -15,7 +15,7 @@ Notes App React is a simple and intuitive note-taking web application. It allows
 - **Netlify**: Used for deploying the live version of the project
 
 ## Demo
-A live demo of the application can be accessed here. [here](https://ket-notes-app.netlify.app/).
+A live demo of the application can be accessed [here](https://ket-notes-app.netlify.app/).
 
 ## Project Setup
 To run the project locally, follow these steps.
